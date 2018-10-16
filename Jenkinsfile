@@ -7,8 +7,17 @@ pipeline {
       }
     }
     stage('Test') {
-      steps {
-        sh 'echo Test'
+      parallel {
+        stage('Test') {
+          steps {
+            sh 'echo Test'
+          }
+        }
+        stage('Junit') {
+          steps {
+            sh 'echo Junit'
+          }
+        }
       }
     }
     stage('Static Analysis') {
